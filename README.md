@@ -22,4 +22,9 @@ This project uses Swagger OpenAPI specs for dynamic documentation
 
 http://localhost:8080/swagger-ui/index.html
 
+## Further Enhancements
+- Containerization
+- CI/CD DevOps Pipeline
+- Adding code quality plugins like Sonar, Fortify/Checkmarx, NexusIq 
+
 

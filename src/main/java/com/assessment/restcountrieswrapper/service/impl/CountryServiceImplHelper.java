@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,10 +27,13 @@ public class CountryServiceImplHelper {
 
     public List<Country> getAllCountries() {
         log.info(">> Invoking Countries API");
+        Instant start = Instant.now();
         try {
             ResponseEntity<Country[]> response = restTemplate.getForEntity(countriesUrl, Country[].class);
             Country[] countries = response.getBody();
             if (null != countries && countries.length > 0) {
+                Instant finish = Instant.now();
+                log.info("> Time Elapsed in external API call: {}", Duration.between(start, finish).toMillis());
                 log.info("<< Finished invoking Countries API with response countries size: {}", countries.length);
                 return Arrays.asList(countries);
             }
